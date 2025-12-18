@@ -1,0 +1,159 @@
+{
+  "run_id": "20251218_104256",
+  "suite": {
+    "name": "Obsidian Test Suite",
+    "description": "Basic mobile QA tests for the Obsidian Android app"
+  },
+  "tests": [
+    {
+      "name": "Launch Obsidian",
+      "steps": [
+        {
+          "type": "launch_app",
+          "description": "Launch the Obsidian app",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Create Vault Without Sync",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": false,
+          "error": "Could not find target: Create a vault. Reason: Target not found in UI xml: 'Create a vault'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_104310_Create_Vault_Without_Sync_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create a vault'",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_104315_Create_Vault_Without_Sync_locate_step1.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 1110,
+            "bounds": "[84,1055][1000,1165]",
+            "matched_text": "Create a vault",
+            "matched_desc": "",
+            "method": "uiautomator_xml",
+            "reason": "Matched by exact text/content-desc"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_104319_Create_Vault_Without_Sync_after_tap_target_1.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Debug screenshot right before tapping Continue without sync",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_continue_without_sync.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Skip sync",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_104320_Create_Vault_Without_Sync_locate_step3.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 1381,
+            "bounds": "[84,1328][1000,1435]",
+            "matched_text": "Continue without sync",
+            "matched_desc": "",
+            "method": "uiautomator_xml",
+            "reason": "Matched by exact text/content-desc"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_104324_Create_Vault_Without_Sync_after_tap_target_3.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Wait for vault name screen to appear",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Capture screen before entering vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_vault_name.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "input_text",
+          "description": "Enter vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Confirm vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_104327_Create_Vault_Without_Sync_locate_step7.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 1885,
+            "bounds": "[84,1832][1000,1939]",
+            "matched_text": "Create a vault",
+            "matched_desc": "",
+            "method": "uiautomator_xml",
+            "reason": "Matched by exact text/content-desc"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_104330_Create_Vault_Without_Sync_after_tap_target_7.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Capture Screenshot",
+      "steps": [
+        {
+          "type": "screenshot",
+          "description": "Capture screenshot after vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\after_vault.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}
