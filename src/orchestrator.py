@@ -8,7 +8,8 @@ from typing import Dict, Any
 import yaml
 
 from src.tools import adb
-from src.tools.types import parse_suite, TestSuite, TestCase, Step
+from src.tools.types import parse_suite, TestSuite, Step
+from src.tools import vision
 
 
 ARTIFACTS_DIR = Path("artifacts")
@@ -18,6 +19,16 @@ SHOTS_DIR = ARTIFACTS_DIR / "screenshots"
 
 def _ts() -> str:
     return datetime.now().strftime("%Y%m%d_%H%M%S")
+
+
+def _safe_name(name: str) -> str:
+    """
+    Makes a string safe to use in file names.
+    Keeps letters, numbers, underscore, and hyphen.
+    Replaces everything else with underscore.
+    """
+    base = name.replace(" ", "_")
+    return "".join(ch if ch.isalnum() or ch in ("_", "-") else "_" for ch in base)
 
 
 def load_suite(path: str) -> TestSuite:
@@ -57,23 +68,54 @@ def run_step(step: Step, test_name: str, step_index: int) -> Dict[str, Any]:
             adb.input_text(step.text)
             adb.sleep(0.5)
 
-        elif step.type == "keyevent":
-            # optional if you add it later in YAML
-            raise ValueError("keyevent not wired in YAML yet")
-
         elif step.type == "sleep":
             seconds = step.sleep_seconds or 1.0
             adb.sleep(seconds)
 
         elif step.type == "screenshot":
-            # If YAML provides a path, use it; otherwise auto-name it
             if step.path:
                 out_path = Path(step.path)
             else:
                 out_path = SHOTS_DIR / f"{_ts()}_{test_name}_step{step_index}.png"
+
             out_path.parent.mkdir(parents=True, exist_ok=True)
             adb.screenshot(out_path)
             record["screenshot"] = str(out_path)
+
+        elif step.type == "tap_target":
+            if not step.target:
+                raise ValueError("tap_target requires 'target'")
+
+            # Always capture a "locate" screenshot so we can debug what the locator saw
+            locate_shot = SHOTS_DIR / f"{_ts()}_{test_name}_locate_step{step_index}.png"
+            adb.screenshot(locate_shot)
+            record["locate_screenshot"] = str(locate_shot)
+
+            # Ask the vision locator for the best tap point
+            result = vision.locate_tap_point(
+                screenshot_path=locate_shot,
+                target=step.target,
+                hint=step.hint,
+            )
+            record["vision"] = result
+
+            if not result.get("found"):
+                raise RuntimeError(
+                    f"Could not find target: {step.target}. Reason: {result.get('reason')}"
+                )
+
+            x = int(result["x"])
+            y = int(result["y"])
+
+            adb.tap(x, y)
+
+            # Give UI a moment to update after tapping
+            adb.sleep(0.8)
+
+            # Capture an "after tap" screenshot so we can prove what happened
+            after_tap_path = SHOTS_DIR / f"{_ts()}_{test_name}_after_tap_target_{step_index}.png"
+            adb.screenshot(after_tap_path)
+            record["after_tap_screenshot"] = str(after_tap_path)
 
         else:
             raise ValueError(f"Unknown step type: {step.type}")
@@ -105,13 +147,15 @@ def run_suite(yaml_path: str) -> Path:
     for test in suite.tests:
         test_rec: Dict[str, Any] = {"name": test.name, "steps": [], "status": "PASS"}
 
+        safe_test_name = _safe_name(test.name)
+
         for i, step in enumerate(test.steps, start=1):
-            rec = run_step(step, test.name.replace(" ", "_"), i)
+            rec = run_step(step, safe_test_name, i)
             test_rec["steps"].append(rec)
 
-            # Always take a screenshot after any action step too, not just explicit screenshot steps
-            if step.type in {"launch_app", "tap", "input_text"}:
-                auto_path = SHOTS_DIR / f"{run_id}_{test.name.replace(' ', '_')}_after_{i}.png"
+            # Auto screenshot after action steps (including tap_target now)
+            if step.type in {"launch_app", "tap", "tap_target", "input_text"}:
+                auto_path = SHOTS_DIR / f"{run_id}_{safe_test_name}_after_{i}.png"
                 try:
                     adb.screenshot(auto_path)
                     rec["auto_screenshot"] = str(auto_path)

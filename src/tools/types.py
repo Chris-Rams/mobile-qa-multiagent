@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional
-
+from typing import Optional
 
 @dataclass
 class Step:
@@ -15,6 +14,9 @@ class Step:
     path: Optional[str] = None
     sleep_seconds: Optional[float] = None
 
+    # for vision based tapping
+    target: Optional[str] = None
+    hint: Optional[str] = None
 
 @dataclass
 class TestCase:
@@ -61,6 +63,8 @@ def parse_suite(data: Dict[str, Any]) -> TestSuite:
                     app=s.get("app"),
                     path=s.get("path"),
                     sleep_seconds=s.get("sleep_seconds"),
+                    target=s.get("target"),
+                    hint=s.get("hint"),
                 )
             )
         tests.append(TestCase(name=tname, steps=steps))

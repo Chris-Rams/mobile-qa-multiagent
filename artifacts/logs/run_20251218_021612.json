@@ -1,0 +1,51 @@
+{
+  "run_id": "20251218_021612",
+  "suite": {
+    "name": "Obsidian Test Suite",
+    "description": "Basic mobile QA tests for the Obsidian Android app"
+  },
+  "tests": [
+    {
+      "name": "Launch Obsidian",
+      "steps": [
+        {
+          "type": "launch_app",
+          "description": "Launch the Obsidian app",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "auto_screenshot": "artifacts\\screenshots\\20251218_021612_Launch_Obsidian_after_1.png"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Create Vault Without Sync",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": false,
+          "error": "Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-****************************************************************************************************************************************************************kiEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'code': 'invalid_api_key', 'param': None}, 'status': 401}",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_021614_Create_Vault_Without_Sync_locate_step1.png",
+          "auto_screenshot": "artifacts\\screenshots\\20251218_021612_Create_Vault_Without_Sync_after_1.png"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Capture Screenshot",
+      "steps": [
+        {
+          "type": "screenshot",
+          "description": "Capture screenshot after vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\after_vault.png"
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}
