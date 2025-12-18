@@ -31,9 +31,21 @@ tests:
         path: artifacts/screenshots/before_vault_name.png
         description: Capture screen before entering vault name
 
+      - type: tap_target
+        target: Vault name
+        description: Select input field
+
+      - type: sleep
+        sleep_seconds: 0.5
+        description: Small pause for keyboard focus
+
       - type: input_text
         text: InternalVault
         description: Enter vault name
+
+      - type: sleep
+        sleep_seconds: 0.5
+        description: Small pause after typing
 
       - type: tap_target
         target: Create a vault
