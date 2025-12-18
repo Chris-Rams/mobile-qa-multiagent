@@ -13,7 +13,6 @@ tests:
     steps:
       - type: tap_target
         target: Create a vault
-        hint: Large purple button near the center
         description: Tap Create a vault
 
       - type: screenshot
@@ -22,9 +21,7 @@ tests:
 
       - type: tap_target
         target: Continue without sync
-        hint: Option below the Create a vault button
         description: Skip sync
-
 
       - type: sleep
         sleep_seconds: 1.5
@@ -34,14 +31,12 @@ tests:
         path: artifacts/screenshots/before_vault_name.png
         description: Capture screen before entering vault name
 
-
       - type: input_text
         text: InternalVault
         description: Enter vault name
 
       - type: tap_target
         target: Create a vault
-        hint: Confirm button to create the vault
         description: Confirm vault creation
 
   - name: Capture Screenshot
@@ -49,4 +44,3 @@ tests:
       - type: screenshot
         path: artifacts/screenshots/after_vault.png
         description: Capture screenshot after vault creation
-

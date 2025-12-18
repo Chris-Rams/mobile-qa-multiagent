@@ -1,90 +1,95 @@
 from __future__ import annotations
 
-import base64
-import json
-import os
+import re
+import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Optional, Dict, Any
 
-from openai import OpenAI
-
-
-LOCATE_PROMPT = """
-You are a mobile UI locator.
-
-You will be given:
-1) A screenshot of an Android app
-2) A target element description (what the user wants to click)
-3) Optional hint text (extra context)
-
-Your job:
-Return the BEST tap point (x, y) in screen pixel coordinates for the target element.
-
-Rules:
-- Output ONLY valid JSON. No extra text.
-- If you cannot find the target, output {"found": false, "reason": "..."}.
-- If you can find it, output:
-  {
-    "found": true,
-    "x": <int>,
-    "y": <int>,
-    "confidence": 0.0-1.0,
-    "reason": "<short>"
-  }
-"""
+from src.tools import adb
 
 
-def _b64_image(path: Path) -> str:
-    data = path.read_bytes()
-    return base64.b64encode(data).decode("utf-8")
+_BOUNDS_RE = re.compile(r"\[(\d+),(\d+)\]\[(\d+),(\d+)\]")
+
+
+def _center_from_bounds(bounds: str) -> Optional[tuple[int, int]]:
+    m = _BOUNDS_RE.search(bounds or "")
+    if not m:
+        return None
+    x1, y1, x2, y2 = map(int, m.groups())
+    return (x1 + x2) // 2, (y1 + y2) // 2
 
 
 def locate_tap_point(
-    screenshot_path: str | Path,
+    screenshot_path: Path,
     target: str,
     hint: Optional[str] = None,
-    model: str = "gpt-4.1-mini",
 ) -> Dict[str, Any]:
     """
-    Returns dict like:
-    - found True: {"found": True, "x": int, "y": int, "confidence": float, "reason": str}
-    - found False: {"found": False, "reason": str}
+    Offline UI locator.
+
+    Uses UIAutomator XML (adb shell uiautomator dump) to find a node whose:
+    - text == target, or
+    - content-desc == target
+
+    Returns a dict compatible with your orchestrator:
+      { found: bool, x: int, y: int, method: str, reason: str }
     """
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is not set in your environment.")
 
-    client = OpenAI(api_key=api_key)
+    # 1) Dump current UI hierarchy to device
+    dump_device_path = "/sdcard/ui.xml"
+    adb.shell(f"uiautomator dump {dump_device_path}")
 
-    screenshot_path = Path(screenshot_path)
-    if not screenshot_path.exists():
-        raise FileNotFoundError(f"Screenshot not found: {screenshot_path}")
+    # 2) Pull the XML to local artifacts folder near screenshot
+    local_xml = screenshot_path.parent / (screenshot_path.stem + "_ui.xml")
+    adb.pull(dump_device_path, str(local_xml))
 
-    b64 = _b64_image(screenshot_path)
+    if not local_xml.exists():
+        return {
+            "found": False,
+            "reason": "UI xml was not pulled successfully",
+            "method": "uiautomator_xml",
+        }
 
-    user_text = f"TARGET: {target}\n"
-    if hint:
-        user_text += f"HINT: {hint}\n"
-
-    resp = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": LOCATE_PROMPT},
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": user_text},
-                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}},
-                ],
-            },
-        ],
-        temperature=0,
-    )
-
-    content = resp.choices[0].message.content or ""
+    # 3) Parse XML and search nodes
     try:
-        data = json.loads(content)
-    except json.JSONDecodeError:
-        raise RuntimeError(f"Model did not return valid JSON.\nReturned:\n{content}")
+        tree = ET.parse(local_xml)
+        root = tree.getroot()
+    except Exception as e:
+        return {
+            "found": False,
+            "reason": f"Failed to parse UI xml: {e}",
+            "method": "uiautomator_xml",
+        }
 
-    return data
+    # Common UIAutomator node attributes:
+    # text, content-desc, resource-id, class, bounds
+    candidates = []
+    for node in root.iter():
+        text = node.attrib.get("text", "") or ""
+        desc = node.attrib.get("content-desc", "") or ""
+        bounds = node.attrib.get("bounds", "") or ""
+
+        if text.strip() == target.strip() or desc.strip() == target.strip():
+            center = _center_from_bounds(bounds)
+            if center:
+                candidates.append((center, bounds, text, desc))
+
+    if not candidates:
+        return {
+            "found": False,
+            "reason": f"Target not found in UI xml: '{target}'",
+            "method": "uiautomator_xml",
+        }
+
+    # If multiple matches exist, pick the first (can be improved later)
+    (x, y), bounds, text, desc = candidates[0]
+    return {
+        "found": True,
+        "x": x,
+        "y": y,
+        "bounds": bounds,
+        "matched_text": text,
+        "matched_desc": desc,
+        "method": "uiautomator_xml",
+        "reason": "Matched by exact text/content-desc",
+    }

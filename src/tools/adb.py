@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import subprocess
 import time
+import shlex
 from pathlib import Path
 from typing import Optional
 
@@ -81,6 +82,27 @@ def screenshot(local_path: str | Path, device_tmp_path: str = "/sdcard/__qa_tmp.
     _run(["adb", "shell", "screencap", "-p", device_tmp_path])
     _run(["adb", "pull", device_tmp_path, str(local_path)])
     return local_path
+
+def shell(command: str, timeout: int = 30) -> str:
+    """
+    Run an adb shell command given as a single string.
+    Safely handles quoted arguments and spaces.
+    Returns STDOUT.
+    Example: shell("uiautomator dump /sdcard/ui.xml")
+    """
+    parts = shlex.split(command)
+    return _run(["adb", "shell", *parts], timeout=timeout).stdout
+
+
+
+def pull(remote_path: str, local_path: str | Path, timeout: int = 60) -> str:
+    """
+    Pull a file from the device to the local machine.
+    Returns STDOUT.
+    """
+    local_path = str(local_path)
+    return _run(["adb", "pull", remote_path, local_path], timeout=timeout).stdout
+
 
 
 def sleep(seconds: float) -> None:
