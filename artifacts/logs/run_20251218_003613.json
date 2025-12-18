@@ -1,0 +1,74 @@
+{
+  "run_id": "20251218_003613",
+  "suite": {
+    "name": "Obsidian Test Suite",
+    "description": "Basic mobile QA tests for the Obsidian Android app"
+  },
+  "tests": [
+    {
+      "name": "Launch Obsidian",
+      "steps": [
+        {
+          "type": "launch_app",
+          "description": "Launch the Obsidian app",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "auto_screenshot": "artifacts\\screenshots\\20251218_003613_Launch_Obsidian_after_1.png"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Create Vault Without Sync",
+      "steps": [
+        {
+          "type": "tap",
+          "description": "Tap Create a vault button",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "auto_screenshot": "artifacts\\screenshots\\20251218_003613_Create_Vault_Without_Sync_after_1.png"
+        },
+        {
+          "type": "tap",
+          "description": "Tap Continue without sync",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "auto_screenshot": "artifacts\\screenshots\\20251218_003613_Create_Vault_Without_Sync_after_2.png"
+        },
+        {
+          "type": "input_text",
+          "description": "Enter vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "auto_screenshot": "artifacts\\screenshots\\20251218_003613_Create_Vault_Without_Sync_after_3.png"
+        },
+        {
+          "type": "tap",
+          "description": "Confirm vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "auto_screenshot": "artifacts\\screenshots\\20251218_003613_Create_Vault_Without_Sync_after_4.png"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Capture Screenshot",
+      "steps": [
+        {
+          "type": "screenshot",
+          "description": "Capture screenshot after vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\note_created.png"
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

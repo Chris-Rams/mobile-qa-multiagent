@@ -1,0 +1,37 @@
+test_suite:
+  name: Obsidian Test Suite
+  description: Basic mobile QA tests for the Obsidian Android app
+
+tests:
+  - name: Launch Obsidian
+    steps:
+      - type: launch_app
+        app: md.obsidian
+        description: Launch the Obsidian app
+
+  - name: Create Vault Without Sync
+    steps:
+      - type: tap
+        x: 500
+        y: 800
+        description: Tap Create a vault button
+
+      - type: tap
+        x: 500
+        y: 1100
+        description: Tap Continue without sync
+
+      - type: input_text
+        text: Test Vault
+        description: Enter vault name
+
+      - type: tap
+        x: 500
+        y: 1200
+        description: Confirm vault creation
+
+  - name: Capture Screenshot
+    steps:
+      - type: screenshot
+        path: artifacts/screenshots/note_created.png
+        description: Capture screenshot after vault creation
