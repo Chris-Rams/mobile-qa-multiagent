@@ -1,0 +1,183 @@
+{
+  "run_id": "20251218_161216",
+  "suite": {
+    "name": "Obsidian Test Suite",
+    "description": "Basic mobile QA tests for the Obsidian Android app"
+  },
+  "tests": [
+    {
+      "name": "Open Obsidian, create a new Vault named 'InternVault', and enter the vault.",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Select destination",
+          "ok": false,
+          "error": "Could not find target 'USE THIS FOLDER' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161216_Open_Obsidian__create_a_new_Vault_named__InternVault___and_enter_the_vault__locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'USE THIS FOLDER' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Select destination",
+          "ok": false,
+          "error": "Could not find target 'USE THIS FOLDER' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161219_Open_Obsidian__create_a_new_Vault_named__InternVault___and_enter_the_vault__locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'USE THIS FOLDER' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants permissions",
+          "ok": false,
+          "error": "Could not find target 'ALLOW' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161222_Open_Obsidian__create_a_new_Vault_named__InternVault___and_enter_the_vault__locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'ALLOW' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants permissions",
+          "ok": false,
+          "error": "Could not find target 'ALLOW' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161226_Open_Obsidian__create_a_new_Vault_named__InternVault___and_enter_the_vault__locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'ALLOW' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "sleep",
+          "description": "Small pause to let obsidian generate file",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Create a new note titled 'Meeting Notes' and type the text 'Daily Standup' into the body.",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "New note",
+          "ok": false,
+          "error": "Could not find target 'Create new note (Ctrl + N)' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161231_Create_a_new_note_titled__Meeting_Notes__and_type_the_text__Daily_Standup__into_the_body__locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create new note (Ctrl + N)' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "New note",
+          "ok": false,
+          "error": "Could not find target 'Create new note (Ctrl + N)' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161234_Create_a_new_note_titled__Meeting_Notes__and_type_the_text__Daily_Standup__into_the_body__locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create new note (Ctrl + N)' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "input_text",
+          "description": "Title text",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Focus the body text area",
+          "ok": false,
+          "error": "Could not find target 'Body' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161249_Create_a_new_note_titled__Meeting_Notes__and_type_the_text__Daily_Standup__into_the_body__locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Body' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Focus the body text area",
+          "ok": false,
+          "error": "Could not find target 'Body' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_161258_Create_a_new_note_titled__Meeting_Notes__and_type_the_text__Daily_Standup__into_the_body__locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Body' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "input_text",
+          "description": "Body text",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Capture Screenshot",
+      "steps": [
+        {
+          "type": "screenshot",
+          "description": "Capture screenshot after vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\after_vault.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

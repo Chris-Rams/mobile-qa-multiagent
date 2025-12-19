@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List, Dict, Any
+
 
 @dataclass
 class Step:
@@ -11,12 +12,15 @@ class Step:
     y: Optional[int] = None
     text: Optional[str] = None
     app: Optional[str] = None
+    # File path (for screenshot)
     path: Optional[str] = None
     sleep_seconds: Optional[float] = None
+    # Vision based tapping
+    target: Optional[str] = None          # primary UI target text/id
+    alt_target: Optional[str] = None      # fallback target text ("Create new vault")
+    hint: Optional[str] = None            # extra hint for locator if needed
+    keycode: Optional[int] = None
 
-    # for vision based tapping
-    target: Optional[str] = None
-    hint: Optional[str] = None
 
 @dataclass
 class TestCase:
@@ -64,7 +68,9 @@ def parse_suite(data: Dict[str, Any]) -> TestSuite:
                     path=s.get("path"),
                     sleep_seconds=s.get("sleep_seconds"),
                     target=s.get("target"),
+                    alt_target=s.get("alt_target"),
                     hint=s.get("hint"),
+                    keycode=s.get("keycode"),
                 )
             )
         tests.append(TestCase(name=tname, steps=steps))

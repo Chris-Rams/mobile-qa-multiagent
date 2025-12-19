@@ -1,0 +1,799 @@
+{
+  "run_id": "20251219_000942",
+  "suite": {
+    "name": "Obsidian Test Suite",
+    "description": "Basic mobile QA tests for the Obsidian Android app"
+  },
+  "tests": [
+    {
+      "name": "Open Obsidian, create a new Vault named 'InternVault', and enter the vault.",
+      "steps": [
+        {
+          "type": "launch_app",
+          "description": "Launch the Obsidian app",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "If the app is slow, choose Wait instead of Close",
+          "ok": false,
+          "error": "Could not find target 'Wait' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_000947_Open_Obsidian__create_a_new_Vault_named__InternVault___and_enter_the_vault__locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Wait' (hint=Button on Obsidian is not responding dialog)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "If the app is slow, choose Wait instead of Close",
+          "ok": false,
+          "error": "Could not find target 'Wait' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_000950_Open_Obsidian__create_a_new_Vault_named__InternVault___and_enter_the_vault__locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Wait' (hint=Button on Obsidian is not responding dialog)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Create Vault Without Sync",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_000952_Create_Vault_Without_Sync_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create a vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "vision_alt": {
+            "found": true,
+            "x": 540,
+            "y": 849,
+            "bounds": "[154,816][926,882]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "1",
+              "text": "Create new vault",
+              "resource-id": "",
+              "class": "android.widget.TextView",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "false",
+              "enabled": "true",
+              "focusable": "false",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[154,816][926,882]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Create new vault' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "Create new vault",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_000957_Create_Vault_Without_Sync_after_tap_target_1.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Debug screenshot right before tapping Continue without sync",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_continue_without_sync.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Skip sync",
+          "ok": false,
+          "error": "Could not find target 'Continue without sync' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_000958_Create_Vault_Without_Sync_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Continue without sync' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Skip sync",
+          "ok": false,
+          "error": "Could not find target 'Continue without sync' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001000_Create_Vault_Without_Sync_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Continue without sync' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "sleep",
+          "description": "Wait for vault name screen to appear",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Capture screen before entering vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_vault_name.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Focus vault name input field",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001004_Create_Vault_Without_Sync_locate_step6.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'My vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "vision_alt": {
+            "found": true,
+            "x": 540,
+            "y": 517,
+            "bounds": "[49,462][1031,572]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "NAF": "true",
+              "index": "2",
+              "text": "",
+              "resource-id": "",
+              "class": "android.widget.EditText",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[49,462][1031,572]",
+              "drawing-order": "0",
+              "hint": "Enter name..."
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Enter name...' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "Enter name...",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_001009_Create_Vault_Without_Sync_after_tap_target_6.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Pause for keyboard focus",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "input_text",
+          "description": "Enter vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Small pause after typing",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Confirm vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001011_Create_Vault_Without_Sync_locate_step10.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create a vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "vision_alt": {
+            "found": true,
+            "x": 540,
+            "y": 1763,
+            "bounds": "[49,1708][1031,1819]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "7",
+              "text": "Create",
+              "resource-id": "",
+              "class": "android.widget.Button",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[49,1708][1031,1819]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Create' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "Create",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_001016_Create_Vault_Without_Sync_after_tap_target_10.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Configure Permissions",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Grants access to files",
+          "ok": false,
+          "error": "Could not find target 'Allow file access' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001016_Configure_Permissions_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow file access' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants access to files",
+          "ok": false,
+          "error": "Could not find target 'Allow file access' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001019_Configure_Permissions_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow file access' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "tap_target",
+          "description": "Toggle file access",
+          "ok": false,
+          "error": "Could not find target 'Allow access to manage all files' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001021_Configure_Permissions_locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow access to manage all files' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Toggle file access",
+          "ok": false,
+          "error": "Could not find target 'Allow access to manage all files' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001023_Configure_Permissions_locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow access to manage all files' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "tap_target",
+          "description": "Return to Obsidian",
+          "ok": false,
+          "error": "Could not find target 'Navigate up' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001025_Configure_Permissions_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Navigate up' (hint=Back arrow top left)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Return to Obsidian",
+          "ok": false,
+          "error": "Could not find target 'Navigate up' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001027_Configure_Permissions_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Navigate up' (hint=Back arrow top left)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Configure Path",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Select destination",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001030_Configure_Path_locate_step1.png",
+          "vision": {
+            "found": true,
+            "x": 540,
+            "y": 2298,
+            "bounds": "[37,2235][1043,2361]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "0",
+              "text": "USE THIS FOLDER",
+              "resource-id": "android:id/button1",
+              "class": "android.widget.Button",
+              "package": "com.google.android.documentsui",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[37,2235][1043,2361]",
+              "drawing-order": "1",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'USE THIS FOLDER' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "USE THIS FOLDER",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_001033_Configure_Path_after_tap_target_1.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants permissions",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001033_Configure_Path_locate_step2.png",
+          "vision": {
+            "found": true,
+            "x": 879,
+            "y": 1407,
+            "bounds": "[790,1344][968,1470]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "1",
+              "text": "ALLOW",
+              "resource-id": "android:id/button1",
+              "class": "android.widget.Button",
+              "package": "com.google.android.documentsui",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[790,1344][968,1470]",
+              "drawing-order": "4",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'ALLOW' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "ALLOW",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_001036_Configure_Path_after_tap_target_2.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Small pause to let obsidian generate file",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Create a new note titled 'Meeting Notes' and type the text 'Daily Standup' into the body.",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "New note",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001038_Create_a_new_note_titled__Meeting_Notes__and_type_the_text__Daily_Standup__into_the_body__locate_step1.png",
+          "vision": {
+            "found": true,
+            "x": 540,
+            "y": 1156,
+            "bounds": "[217,1092][863,1220]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "1",
+              "text": "Create new note (Ctrl + N)",
+              "resource-id": "",
+              "class": "android.widget.TextView",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "false",
+              "enabled": "true",
+              "focusable": "false",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[217,1092][863,1220]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Create new note (Ctrl + N)' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "Create new note (Ctrl + N)",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_001042_Create_a_new_note_titled__Meeting_Notes__and_type_the_text__Daily_Standup__into_the_body__after_tap_target_1.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "input_text",
+          "description": "Title text",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "keyevent",
+          "description": "Press Enter to move cursor from title into body",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Small pause after Enter",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "input_text",
+          "description": "Body text",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Settings appearance icon should not be red (expected FAIL)",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Open left menu",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001044_Settings_appearance_icon_should_not_be_red__expected_FAIL__locate_step1.png",
+          "vision": {
+            "found": true,
+            "x": 90,
+            "y": 207,
+            "bounds": "[42,162][139,252]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "0",
+              "text": "Expand",
+              "resource-id": "",
+              "class": "android.widget.Button",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[42,162][139,252]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Expand' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "Expand",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_001047_Settings_appearance_icon_should_not_be_red__expected_FAIL__after_tap_target_1.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap",
+          "description": "Tap the gear Settings icon (coordinate based)",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Capture screen after tapping Settings gear",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\after_settings_tap.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Open the Appearance settings",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001048_Settings_appearance_icon_should_not_be_red__expected_FAIL__locate_step4.png",
+          "vision": {
+            "found": true,
+            "x": 163,
+            "y": 918,
+            "bounds": "[49,892][278,945]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "0",
+              "text": "Appearance",
+              "resource-id": "",
+              "class": "android.widget.TextView",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "false",
+              "enabled": "true",
+              "focusable": "false",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[49,892][278,945]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Appearance' by exact attribute (prefer clickable if available)"
+          },
+          "used_target": "Appearance",
+          "after_tap_screenshot": "artifacts\\screenshots\\20251219_001051_Settings_appearance_icon_should_not_be_red__expected_FAIL__after_tap_target_4.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Capture the Appearance tab UI for review",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\appearance_tab.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Try to tap a red appearance icon (this should fail if the icon is not red)",
+          "ok": false,
+          "error": "Could not find target 'Red appearance icon' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001052_Settings_appearance_icon_should_not_be_red__expected_FAIL__locate_step6.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Red appearance icon' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Try to tap a red appearance icon (this should fail if the icon is not red)",
+          "ok": false,
+          "error": "Could not find target 'Red appearance icon' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001054_Settings_appearance_icon_should_not_be_red__expected_FAIL__locate_step6.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Red appearance icon' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "adb",
+          "description": "Go back",
+          "ok": false,
+          "error": "Unknown step type: adb",
+          "screenshot": null,
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "sleep",
+          "description": "Small pause after Enter",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Missing Print to PDF option in main file menu (expected FAIL)",
+      "steps": [
+        {
+          "type": "tap",
+          "description": "Tap the More options menu",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Try to tap Print to PDF (this should fail if the option is missing)",
+          "ok": false,
+          "error": "Could not find target 'Print to PDF' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001059_Missing_Print_to_PDF_option_in_main_file_menu__expected_FAIL__locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Print to PDF' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Try to tap Print to PDF (this should fail if the option is missing)",
+          "ok": false,
+          "error": "Could not find target 'Print to PDF' or alt_target 'None'",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251219_001101_Missing_Print_to_PDF_option_in_main_file_menu__expected_FAIL__locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Print to PDF' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "screenshot",
+          "description": "Capture the file menu to show Print to PDF is not present",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\file_menu_after_print_to_pdf_attempt.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Capture Screenshot",
+      "steps": [
+        {
+          "type": "screenshot",
+          "description": "Capture screenshot after vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\after_vault.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

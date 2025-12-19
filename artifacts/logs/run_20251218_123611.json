@@ -1,0 +1,356 @@
+{
+  "run_id": "20251218_123611",
+  "suite": {
+    "name": "Obsidian Test Suite",
+    "description": "Basic mobile QA tests for the Obsidian Android app"
+  },
+  "tests": [
+    {
+      "name": "Launch Obsidian",
+      "steps": [
+        {
+          "type": "launch_app",
+          "description": "Launch the Obsidian app",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Create Vault Without Sync",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": false,
+          "error": "Command failed (137): adb shell uiautomator dump /sdcard/ui.xml\nSTDOUT:\nUI hierchary dumped to: /sdcard/ui.xml\n\nSTDERR:\n",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_123626_Create_Vault_Without_Sync_locate_step1.png",
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_123632_Create_Vault_Without_Sync_locate_step1.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 1110,
+            "bounds": "[84,1055][1000,1165]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "5",
+              "text": "Create a vault",
+              "resource-id": "",
+              "class": "android.widget.Button",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[84,1055][1000,1165]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Create a vault' by exact attribute (prefer clickable if available)"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_123637_Create_Vault_Without_Sync_after_tap_target_1.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Debug screenshot right before tapping Continue without sync",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_continue_without_sync.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Skip sync",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_123639_Create_Vault_Without_Sync_locate_step3.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 1381,
+            "bounds": "[84,1328][1000,1435]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "5",
+              "text": "Continue without sync",
+              "resource-id": "",
+              "class": "android.widget.Button",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[84,1328][1000,1435]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Continue without sync' by exact attribute (prefer clickable if available)"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_123642_Create_Vault_Without_Sync_after_tap_target_3.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Wait for vault name screen to appear",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Capture screen before entering vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_vault_name.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Focus vault name input field",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_123645_Create_Vault_Without_Sync_locate_step6.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 687,
+            "bounds": "[84,632][1000,742]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "NAF": "true",
+              "index": "1",
+              "text": "",
+              "resource-id": "",
+              "class": "android.widget.EditText",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[84,632][1000,742]",
+              "drawing-order": "0",
+              "hint": "My vault"
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'My vault' by exact attribute (prefer clickable if available)"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_123648_Create_Vault_Without_Sync_after_tap_target_6.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Pause for keyboard focus",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "input_text",
+          "description": "Enter vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Small pause after typing",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Confirm vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_123652_Create_Vault_Without_Sync_locate_step10.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 1885,
+            "bounds": "[84,1832][1000,1939]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "4",
+              "text": "Create a vault",
+              "resource-id": "",
+              "class": "android.widget.Button",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[84,1832][1000,1939]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Create a vault' by exact attribute (prefer clickable if available)"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_123656_Create_Vault_Without_Sync_after_tap_target_10.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants access to files",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_123657_Create_Vault_Without_Sync_locate_step11.png",
+          "vision": {
+            "found": true,
+            "x": 542,
+            "y": 2056,
+            "bounds": "[84,2002][1000,2110]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "1",
+              "text": "Allow file access",
+              "resource-id": "",
+              "class": "android.widget.Button",
+              "package": "md.obsidian",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "true",
+              "enabled": "true",
+              "focusable": "true",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[84,2002][1000,2110]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Allow file access' by exact attribute (prefer clickable if available)"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_123701_Create_Vault_Without_Sync_after_tap_target_11.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Widget toggle",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_123703_Create_Vault_Without_Sync_locate_step12.png",
+          "vision": {
+            "found": true,
+            "x": 451,
+            "y": 1060,
+            "bounds": "[63,1029][839,1091]",
+            "matched_on": "exact_attribute_match",
+            "matched_attrs": {
+              "index": "0",
+              "text": "Allow access to manage all files",
+              "resource-id": "",
+              "class": "android.widget.TextView",
+              "package": "com.android.settings",
+              "content-desc": "",
+              "checkable": "false",
+              "checked": "false",
+              "clickable": "false",
+              "enabled": "true",
+              "focusable": "false",
+              "focused": "false",
+              "scrollable": "false",
+              "long-clickable": "false",
+              "password": "false",
+              "selected": "false",
+              "bounds": "[63,1029][839,1091]",
+              "drawing-order": "0",
+              "hint": ""
+            },
+            "method": "uiautomator_xml",
+            "reason": "Matched 'Allow access to manage all files' by exact attribute (prefer clickable if available)"
+          },
+          "after_tap_screenshot": "artifacts\\screenshots\\20251218_123712_Create_Vault_Without_Sync_after_tap_target_12.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Capture Screenshot",
+      "steps": [
+        {
+          "type": "screenshot",
+          "description": "Capture screenshot after vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\after_vault.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,426 @@
+{
+  "run_id": "20251218_153710",
+  "suite": {
+    "name": "Obsidian Test Suite",
+    "description": "Basic mobile QA tests for the Obsidian Android app"
+  },
+  "tests": [
+    {
+      "name": "Launch Obsidian",
+      "steps": [
+        {
+          "type": "launch_app",
+          "description": "Launch the Obsidian app",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "Create Vault Without Sync",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": false,
+          "error": "Could not find target: Create a vault. Reason: Target not found in UI xml: 'Create a vault' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153726_Create_Vault_Without_Sync_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create a vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Tap Create a vault",
+          "ok": false,
+          "error": "Could not find target: Create a vault. Reason: Target not found in UI xml: 'Create a vault' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153739_Create_Vault_Without_Sync_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create a vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "screenshot",
+          "description": "Debug screenshot right before tapping Continue without sync",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_continue_without_sync.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Skip sync",
+          "ok": false,
+          "error": "Could not find target: Continue without sync. Reason: Target not found in UI xml: 'Continue without sync' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153742_Create_Vault_Without_Sync_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Continue without sync' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Skip sync",
+          "ok": false,
+          "error": "Could not find target: Continue without sync. Reason: Target not found in UI xml: 'Continue without sync' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153745_Create_Vault_Without_Sync_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Continue without sync' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "sleep",
+          "description": "Wait for vault name screen to appear",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "screenshot",
+          "description": "Capture screen before entering vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\before_vault_name.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Focus vault name input field",
+          "ok": false,
+          "error": "Could not find target: My vault. Reason: Target not found in UI xml: 'My vault' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153751_Create_Vault_Without_Sync_locate_step6.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'My vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Focus vault name input field",
+          "ok": false,
+          "error": "Could not find target: My vault. Reason: Target not found in UI xml: 'My vault' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153753_Create_Vault_Without_Sync_locate_step6.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'My vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "sleep",
+          "description": "Pause for keyboard focus",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "input_text",
+          "description": "Enter vault name",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "sleep",
+          "description": "Small pause after typing",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        },
+        {
+          "type": "tap_target",
+          "description": "Confirm vault creation",
+          "ok": false,
+          "error": "Could not find target: Create a vault. Reason: Target not found in UI xml: 'Create a vault' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153759_Create_Vault_Without_Sync_locate_step10.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create a vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Confirm vault creation",
+          "ok": false,
+          "error": "Could not find target: Create a vault. Reason: Target not found in UI xml: 'Create a vault' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153802_Create_Vault_Without_Sync_locate_step10.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create a vault' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Configure Permissions",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Grants access to files",
+          "ok": false,
+          "error": "Could not find target: Allow file access. Reason: Target not found in UI xml: 'Allow file access' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153805_Configure_Permissions_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow file access' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants access to files",
+          "ok": false,
+          "error": "Could not find target: Allow file access. Reason: Target not found in UI xml: 'Allow file access' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153808_Configure_Permissions_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow file access' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "tap_target",
+          "description": "Toggle file access",
+          "ok": false,
+          "error": "Could not find target: Allow access to manage all files. Reason: Target not found in UI xml: 'Allow access to manage all files' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153811_Configure_Permissions_locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow access to manage all files' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Toggle file access",
+          "ok": false,
+          "error": "Could not find target: Allow access to manage all files. Reason: Target not found in UI xml: 'Allow access to manage all files' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153813_Configure_Permissions_locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Allow access to manage all files' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "tap_target",
+          "description": "Return to Obsidian",
+          "ok": false,
+          "error": "Could not find target: Navigate up. Reason: Target not found in UI xml: 'Navigate up' (hint=Back arrow top left)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153816_Configure_Permissions_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Navigate up' (hint=Back arrow top left)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Return to Obsidian",
+          "ok": false,
+          "error": "Could not find target: Navigate up. Reason: Target not found in UI xml: 'Navigate up' (hint=Back arrow top left)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153819_Configure_Permissions_locate_step3.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Navigate up' (hint=Back arrow top left)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Configure Path",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "Select destination",
+          "ok": false,
+          "error": "Could not find target: USE THIS FOLDER. Reason: Target not found in UI xml: 'USE THIS FOLDER' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153822_Configure_Path_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'USE THIS FOLDER' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Select destination",
+          "ok": false,
+          "error": "Could not find target: USE THIS FOLDER. Reason: Target not found in UI xml: 'USE THIS FOLDER' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153825_Configure_Path_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'USE THIS FOLDER' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants permissions",
+          "ok": false,
+          "error": "Could not find target: ALLOW. Reason: Target not found in UI xml: 'ALLOW' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153827_Configure_Path_locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'ALLOW' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "Grants permissions",
+          "ok": false,
+          "error": "Could not find target: ALLOW. Reason: Target not found in UI xml: 'ALLOW' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153830_Configure_Path_locate_step2.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'ALLOW' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Create Note",
+      "steps": [
+        {
+          "type": "tap_target",
+          "description": "New note",
+          "ok": false,
+          "error": "Could not find target: Create new note (Ctrl + N). Reason: Target not found in UI xml: 'Create new note (Ctrl + N)' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153833_Create_Note_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create new note (Ctrl + N)' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "retry",
+          "supervisor_reason": "Retrying flaky step (attempt 1)"
+        },
+        {
+          "type": "tap_target",
+          "description": "New note",
+          "ok": false,
+          "error": "Could not find target: Create new note (Ctrl + N). Reason: Target not found in UI xml: 'Create new note (Ctrl + N)' (hint=None)",
+          "screenshot": null,
+          "locate_screenshot": "artifacts\\screenshots\\20251218_153835_Create_Note_locate_step1.png",
+          "vision": {
+            "found": false,
+            "reason": "Target not found in UI xml: 'Create new note (Ctrl + N)' (hint=None)",
+            "method": "uiautomator_xml"
+          },
+          "supervisor_action": "stop",
+          "supervisor_reason": "Step failed and no retries left"
+        },
+        {
+          "type": "input_text",
+          "description": "Sample text for note",
+          "ok": true,
+          "error": null,
+          "screenshot": null,
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "Capture Screenshot",
+      "steps": [
+        {
+          "type": "screenshot",
+          "description": "Capture screenshot after vault creation",
+          "ok": true,
+          "error": null,
+          "screenshot": "artifacts\\screenshots\\after_vault.png",
+          "supervisor_action": "continue",
+          "supervisor_reason": "Step passed"
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

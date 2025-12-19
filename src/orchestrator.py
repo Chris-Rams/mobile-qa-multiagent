@@ -54,7 +54,7 @@ def run_step(step: Step, test_name: str, step_index: int) -> Dict[str, Any]:
             if not step.app:
                 raise ValueError("launch_app requires 'app'")
             adb.launch_app(step.app)
-            adb.sleep(1.0)
+            adb.sleep(5.0)
 
         elif step.type == "tap":
             if step.x is None or step.y is None:
@@ -86,36 +86,54 @@ def run_step(step: Step, test_name: str, step_index: int) -> Dict[str, Any]:
             if not step.target:
                 raise ValueError("tap_target requires 'target'")
 
-            # Always capture a "locate" screenshot so we can debug what the locator saw
             locate_shot = SHOTS_DIR / f"{_ts()}_{test_name}_locate_step{step_index}.png"
             adb.screenshot(locate_shot)
             record["locate_screenshot"] = str(locate_shot)
 
-            # Ask the vision locator for the best tap point
+            # Try primary target
             result = vision.locate_tap_point(
                 screenshot_path=locate_shot,
                 target=step.target,
                 hint=step.hint,
             )
             record["vision"] = result
+            used_target = step.target
+
+            # If that failed, try alt target
+            if not result.get("found") and getattr(step, "alt_target", None):
+                alt_result = vision.locate_tap_point(
+                    screenshot_path=locate_shot,
+                    target=step.alt_target,
+                    hint=step.hint,
+                )
+                record["vision_alt"] = alt_result
+                if alt_result.get("found"):
+                    result = alt_result
+                    used_target = step.alt_target
 
             if not result.get("found"):
                 raise RuntimeError(
-                    f"Could not find target: {step.target}. Reason: {result.get('reason')}"
+                    f"Could not find target '{step.target}' or alt_target '{step.alt_target}'"
                 )
+
+            record["used_target"] = used_target
 
             x = int(result["x"])
             y = int(result["y"])
-
             adb.tap(x, y)
-
-            # Give UI a moment to update after tapping
             adb.sleep(0.8)
 
-            # Capture an "after tap" screenshot so we can prove what happened
             after_tap_path = SHOTS_DIR / f"{_ts()}_{test_name}_after_tap_target_{step_index}.png"
             adb.screenshot(after_tap_path)
             record["after_tap_screenshot"] = str(after_tap_path)
+        
+        elif step.type == "keyevent":
+            if step.keycode is None:
+                raise ValueError("keyevent requires keycode")
+            adb.keyevent(step.keycode)
+            adb.sleep(0.5)
+
+
 
         else:
             raise ValueError(f"Unknown step type: {step.type}")

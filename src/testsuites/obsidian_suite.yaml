@@ -3,16 +3,23 @@ test_suite:
   description: Basic mobile QA tests for the Obsidian Android app
 
 tests:
-  - name: Launch Obsidian
+  - name: Open Obsidian, create a new Vault named 'InternVault', and enter the vault.
     steps:
       - type: launch_app
         app: md.obsidian
         description: Launch the Obsidian app
 
+      - type: tap_target
+        target: Wait
+        hint: Button on Obsidian is not responding dialog
+        description: If the app is slow, choose Wait instead of Close
+
+
   - name: Create Vault Without Sync
     steps:
       - type: tap_target
         target: Create a vault
+        alt_target: Create new vault
         description: Tap Create a vault
 
       - type: screenshot
@@ -32,24 +39,134 @@ tests:
         description: Capture screen before entering vault name
 
       - type: tap_target
-        target: Vault name
-        description: Select input field
+        target: My vault
+        alt_target: Enter name...
+        description: Focus vault name input field
 
       - type: sleep
-        sleep_seconds: 0.5
-        description: Small pause for keyboard focus
+        sleep_seconds: 1
+        description: Pause for keyboard focus
 
       - type: input_text
-        text: InternalVault
+        text: VaultTestThree
         description: Enter vault name
 
       - type: sleep
-        sleep_seconds: 0.5
+        sleep_seconds: 0.3
         description: Small pause after typing
 
       - type: tap_target
         target: Create a vault
+        alt_target: Create
         description: Confirm vault creation
+
+  - name: Configure Permissions
+    steps:
+      - type: tap_target
+        target: Allow file access
+        description: Grants access to files
+
+      - type: tap_target
+        target: Allow access to manage all files
+        description: Toggle file access
+
+      - type: tap_target
+        target: Navigate up
+        hint: Back arrow top left
+        description: Return to Obsidian
+
+  - name: Configure Path
+    steps:
+      - type: tap_target
+        target: USE THIS FOLDER
+        description: Select destination
+
+      - type: tap_target
+        target: ALLOW
+        description: Grants permissions 
+
+      - type: sleep
+        sleep_seconds: 2
+        description: Small pause to let obsidian generate file
+
+  - name: Create a new note titled 'Meeting Notes' and type the text 'Daily Standup' into the body.
+    steps:
+      - type: tap_target
+        target: Create new note (Ctrl + N)
+        description: New note 
+
+      - type: input_text
+        text: Meeting Notes
+        description: Title text
+      
+      - type: keyevent
+        keycode: 66
+        description: Press Enter to move cursor from title into body
+
+      - type: sleep
+        sleep_seconds: 0.3
+        description: Small pause after Enter
+
+      - type: input_text
+        text: Daily Standup
+        description: Body text
+
+  - name: Settings appearance icon should not be red (expected FAIL)
+    steps:
+      - type: tap_target
+        target: Expand
+        description: Open left menu
+
+      - type: tap
+        x: 850      # <-- replace with the x that worked for you
+        y: 210        # <-- replace with the y that worked for you
+        description: Tap the gear Settings icon (coordinate based)
+
+      - type: screenshot
+        path: artifacts/screenshots/after_settings_tap.png
+        description: Capture screen after tapping Settings gear
+
+
+      - type: tap_target
+        target: Appearance
+        description: Open the Appearance settings
+
+      - type: screenshot
+        path: artifacts/screenshots/appearance_tab.png
+        description: Capture the Appearance tab UI for review
+
+      - type: tap_target
+        target: Red appearance icon
+        description: Try to tap a red appearance icon (this should fail if the icon is not red)
+
+      - type: tap_target
+        target: More options
+        description: Return to note
+
+      - type: sleep
+        sleep_seconds: 0.5
+        description: Small pause after Enter
+
+      - type: tap_target
+        target: More options
+        description: Return to note
+
+  - name: Missing Print to PDF option in main file menu (expected FAIL)
+    steps:
+      - type: tap_target
+        target: More options
+        description: Open the main file menu
+
+      # Negative check: Print to PDF does not exist on mobile
+      - type: tap_target
+        target: Print to PDF
+        description: Try to tap Print to PDF (this should fail if the option is missing)
+
+      # Optional screenshot for debugging / evidence
+      - type: screenshot
+        path: artifacts/screenshots/file_menu_after_print_to_pdf_attempt.png
+        description: Capture the file menu to show Print to PDF is not present
+
 
   - name: Capture Screenshot
     steps:

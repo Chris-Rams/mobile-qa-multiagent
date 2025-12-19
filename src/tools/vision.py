@@ -153,6 +153,11 @@ def locate_tap_point(
     # 1) Exact match on target
     matches = _find_exact_matches(root, target)
     if matches:
+        # Prefer clickable matches if any exist
+        clickable_matches = [m for m in matches if m[3].get("clickable", "").lower() == "true"]
+        if clickable_matches:
+            matches = clickable_matches
+
         x, y, bounds, attrs = matches[0]
         return {
             "found": True,
@@ -162,8 +167,9 @@ def locate_tap_point(
             "matched_on": "exact_attribute_match",
             "matched_attrs": attrs,
             "method": "uiautomator_xml",
-            "reason": f"Matched '{target}' by exact attribute",
+            "reason": f"Matched '{target}' by exact attribute (prefer clickable if available)",
         }
+
 
     # 2) If hint is provided, try matching hint directly
     if hint:
