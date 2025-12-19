@@ -48,7 +48,7 @@ tests:
         description: Pause for keyboard focus
 
       - type: input_text
-        text: VaultTestThree
+        text: InternVault
         description: Enter vault name
 
       - type: sleep
